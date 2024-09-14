@@ -10,9 +10,11 @@ import org.springframework.web.client.RestTemplate;
 /** The application is simple, it only uses Web MVC and a {@linkplain RestTemplate}. */
 @Configuration
 public class AppAutoConfiguration {
-  @Bean RestTemplateCustomizer useOkHttpClient(final OkHttpClient okHttpClient) {
+  @Bean
+  RestTemplateCustomizer useOkHttpClient(final OkHttpClient okHttpClient) {
     return new RestTemplateCustomizer() {
-      @Override public void customize(RestTemplate restTemplate) {
+      @Override
+      public void customize(RestTemplate restTemplate) {
         restTemplate.setRequestFactory(new OkHttp3ClientHttpRequestFactory(okHttpClient));
       }
     };

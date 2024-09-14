@@ -15,13 +15,14 @@ public class Frontend {
   final RestTemplate restTemplate;
   final String backendEndpoint;
 
-  @Autowired Frontend(RestTemplateBuilder restTemplateBuilder,
-      @Value("${backend.endpoint:http://127.0.0.1:9000/api}") String backendEndpoint) {
+  @Autowired
+  Frontend(RestTemplateBuilder restTemplateBuilder, @Value("${backend.endpoint:http://127.0.0.1:9000/api}") String backendEndpoint) {
     this.restTemplate = restTemplateBuilder.build();
     this.backendEndpoint = backendEndpoint;
   }
 
-  @RequestMapping("/") public String callBackend() {
+  @RequestMapping("/")
+  public String callBackend() {
     return restTemplate.getForObject(backendEndpoint, String.class);
   }
 
